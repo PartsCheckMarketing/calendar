@@ -765,24 +765,35 @@ const F = {
   title:'Title', date:'Date', channel:'Channel', brand:'Brand',
   tag:'Campaign/Tag', audience:'Audience/Segment', status:'Status', notes:'Notes/Link'
 };
+/* Airtable hands back an ARRAY for multi-select fields (Campaign/Tag is one)
+   and a string for everything else. Normalise on the way in so nothing
+   downstream has to care, and remember the shape so we write it back the
+   same way. */
+let TAG_IS_ARRAY = false;
+const asText = v => Array.isArray(v) ? v.filter(Boolean).map(String).join(', ')
+                                     : (v == null ? '' : String(v));
+const splitTags = s => String(s == null ? '' : s).split(',')
+                         .map(x => x.trim()).filter(Boolean);
 function fromRec(rec){
   const f = rec.fields || {};
+  if(Array.isArray(f[F.tag])) TAG_IS_ARRAY = true;
   return {
     id: rec.id,
-    title:    f[F.title]    || '(untitled)',
-    date:    (f[F.date]     || '').slice(0,10),
-    channel:  f[F.channel]  || '',
-    brand:    f[F.brand]    || '',
-    tag:      f[F.tag]      || '',
-    audience: f[F.audience] || '',
-    status:   f[F.status]   || 'Planned',
-    notes:    f[F.notes]    || ''
+    title:    asText(f[F.title]) || '(untitled)',
+    date:     asText(f[F.date]).slice(0,10),
+    channel:  asText(f[F.channel]),
+    brand:    asText(f[F.brand]),
+    tag:      asText(f[F.tag]),
+    audience: asText(f[F.audience]),
+    status:   asText(f[F.status]) || 'Planned',
+    notes:    asText(f[F.notes])
   };
 }
 function toFields(e){
   const o = {};
   o[F.title]=e.title; o[F.date]=e.date; o[F.channel]=e.channel; o[F.brand]=e.brand;
-  o[F.tag]=e.tag; o[F.audience]=e.audience; o[F.status]=e.status; o[F.notes]=e.notes;
+  o[F.tag]=TAG_IS_ARRAY ? splitTags(e.tag) : e.tag;
+  o[F.audience]=e.audience; o[F.status]=e.status; o[F.notes]=e.notes;
   return o;
 }
 async function atList(){
@@ -873,8 +884,8 @@ function monthKey(d){ return d.getFullYear() + '-' + pad2(d.getMonth()+1); }
 function inMonth(e, d){ return (e.date||'').slice(0,7) === monthKey(d); }
 function allTags(){
   const s = new Set();
-  DATA.forEach(e => { if(e.tag) s.add(e.tag); });
-  return Array.from(s).sort((a,b)=>a.localeCompare(b));
+  DATA.forEach(e => splitTags(e.tag).forEach(t => s.add(t)));
+  return Array.from(s).sort((a,b) => String(a).localeCompare(String(b)));
 }
 function sortByDate(a,b){
   if(a.date === b.date) return (a.title||'').localeCompare(b.title||'');
@@ -900,7 +911,7 @@ function filteredFor(view){
   const tg = view === 'list' ? $('lst-f-tag').value : '';
   return scopeEntries().filter(e =>
     (!ch || e.channel === ch) && (!br || e.brand === br) &&
-    (!st || e.status === st)  && (!tg || e.tag === tg));
+    (!st || e.status === st)  && (!tg || splitTags(e.tag).indexOf(tg) > -1));
 }
 
 /* ═══════════════════════════════════════════════════════════════
