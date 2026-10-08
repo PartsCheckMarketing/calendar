@@ -177,7 +177,7 @@ a{color:var(--pc-green-700)}
 .filters{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .field{display:flex;align-items:center;gap:6px}
 .field__lab{font:700 10px/1 Arial,Helvetica,sans-serif;color:var(--pc-gray-500);text-transform:uppercase;letter-spacing:.5px}
-select,input[type=text],input[type=date],input[type=password],textarea{
+select,input[type=text],input[type=date],input[type=month],input[type=password],textarea{
   border:1px solid var(--line-strong);border-radius:var(--pc-radius-control);
   background:#fff;color:var(--ink);font-size:11.5px;padding:6px 8px;height:28px;
 }
@@ -362,6 +362,172 @@ body.is-edit .day:hover .day__add{display:block}
   .day{min-height:92px}
   .stat{min-width:100px}
 }
+
+/* ══════════════════════════════════════════════════════════════
+   Top-level navigation (Content Calendar | Monthly Update)
+   ══════════════════════════════════════════════════════════════ */
+.appnav{display:flex;align-items:stretch;height:56px;margin-left:4px}
+.appnav__a{
+  display:flex;align-items:center;padding:0 14px;color:rgba(255,255,255,.82);
+  text-decoration:none;font:700 11px/1 Arial,Helvetica,sans-serif;
+  text-transform:uppercase;letter-spacing:.8px;border-bottom:3px solid transparent;
+  margin-bottom:-3px;transition:background .12s ease,color .12s ease;
+}
+.appnav__a:hover{background:rgba(255,255,255,.12);color:#fff}
+.appnav__a.is-on{color:#fff;border-bottom-color:#fff;background:rgba(255,255,255,.10)}
+
+/* ══════════════════════════════════════════════════════════════
+   Monthly Update: reading layout
+   ══════════════════════════════════════════════════════════════ */
+.upd{display:grid;grid-template-columns:minmax(0,1fr) 264px;gap:16px;align-items:start;margin-top:16px}
+.upd__main > .card:first-child{margin-top:0}
+.upd__rail{position:sticky;top:16px}
+.upd__rail .card{margin-top:0}
+
+.uhead{padding:28px 32px 26px}
+.uhead__kicker{
+  font:700 10.5px/1 Arial,Helvetica,sans-serif;color:var(--green-deep);
+  text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;
+}
+.uhead__h1{font:700 28px/1.2 Arial,Helvetica,sans-serif;color:var(--ink-strong);margin:0 0 10px;letter-spacing:-.2px}
+.uhead__by{font-size:11px;color:var(--muted)}
+.uhead__sum{font-size:15px;line-height:1.65;color:var(--ink);margin:20px 0 0;max-width:760px}
+.uhead__sum p{margin:0 0 10px}
+.uhead__sum p:last-child{margin-bottom:0}
+.udraft{
+  border:1px solid var(--pc-amber);border-left-width:3px;background:var(--pc-amber-bg);
+  color:#92400e;padding:8px 12px;margin:0 0 18px;font-size:11.5px;
+}
+.udraft b{font-family:Arial,Helvetica,sans-serif}
+
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:0;margin-top:22px;border:1px solid var(--line-strong)}
+.kpi{padding:14px 16px;border-right:1px solid var(--line);background:#fff;min-width:0}
+.kpi:last-child{border-right:0}
+.kpi__l{font:700 10px/1.3 Arial,Helvetica,sans-serif;color:var(--pc-gray-500);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px}
+.kpi__v{font:700 26px/1.05 Arial,Helvetica,sans-serif;color:var(--ink-strong);font-variant-numeric:tabular-nums}
+.kpi__n{font-size:10.5px;color:var(--muted);margin-top:6px;line-height:1.4}
+.kpis--mini{margin-top:10px}
+.kpis--mini .kpi__v{font-size:18px}
+
+.usec__body{padding:22px 32px 26px}
+
+/* prose rendered from Airtable rich text / markdown */
+.prose{font-size:13.5px;line-height:1.7;color:var(--ink);max-width:760px}
+.prose p{margin:0 0 12px}
+.prose h3,.prose h4{font-family:Arial,Helvetica,sans-serif;color:var(--ink-strong);line-height:1.3;margin:24px 0 8px}
+.prose h3{font-size:17px}
+.prose h4{font-size:15px}
+.prose > :first-child{margin-top:0}
+.prose > :last-child{margin-bottom:0}
+.prose ul,.prose ol{margin:0 0 12px;padding-left:22px}
+.prose li{margin:0 0 8px}
+.prose li ul{margin:6px 0 0}
+.prose a{color:var(--green-deep);text-decoration:underline;text-underline-offset:2px}
+.prose strong{color:var(--ink-strong)}
+.prose em{color:var(--pc-gray-600)}
+.prose blockquote{margin:0 0 12px;padding:2px 0 2px 14px;border-left:3px solid var(--line-strong);color:var(--pc-gray-600)}
+.prose code{background:var(--pc-gray-100);border:1px solid var(--line);border-radius:3px;padding:0 4px;font-size:12px}
+.prose pre{background:var(--pc-gray-50);border:1px solid var(--line);padding:10px 12px;overflow:auto;font-size:12px}
+.prose hr{border:0;border-top:1px solid var(--line);margin:20px 0}
+
+/* images */
+.ugal{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin-top:18px;max-width:760px}
+.ugal__fig{margin:0;border:1px solid var(--line-strong);background:var(--pc-gray-50)}
+.ugal__fig a{display:block}
+.ugal__fig img{display:block;width:100%;height:160px;object-fit:cover;background:#fff}
+.ugal__cap{font-size:10.5px;color:var(--muted);padding:6px 8px;line-height:1.35}
+
+/* coming up: auto list from the calendar */
+.ucal{margin-top:18px;max-width:760px}
+.ucal__lab{font:700 10px/1 Arial,Helvetica,sans-serif;color:var(--pc-gray-500);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px}
+.ucal__list{border:1px solid var(--line-strong)}
+.up-item{
+  display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:#fff;
+  border:0;border-bottom:1px solid var(--line);padding:9px 12px;cursor:pointer;font-size:12px;color:var(--ink);
+}
+.up-item:last-child{border-bottom:0}
+.up-item:hover{background:var(--pc-gray-50)}
+.up-item__d{flex:0 0 92px;font:400 11px/1.3 Arial,Helvetica,sans-serif;color:var(--pc-gray-600)}
+.up-item__t{flex:1;min-width:0;color:var(--ink-strong)}
+
+/* archive rail */
+.urail__item{
+  display:block;width:100%;text-align:left;background:#fff;border:0;border-bottom:1px solid var(--line);
+  padding:10px 14px;cursor:pointer;text-decoration:none;color:var(--ink);
+}
+.urail__item:last-child{border-bottom:0}
+.urail__item:hover{background:var(--pc-gray-50)}
+.urail__item.is-on{box-shadow:inset 3px 0 0 var(--green);background:var(--green-wash)}
+.urail__m{font:700 12px/1.3 Arial,Helvetica,sans-serif;color:var(--ink-strong);display:flex;align-items:center;gap:8px}
+.urail__h{font-size:10.5px;color:var(--muted);margin-top:3px;line-height:1.35}
+.urail__empty{padding:16px 14px;font-size:11px;color:var(--muted)}
+.st--draft{background:var(--pc-amber-bg);border-color:#fde68a;color:#92400e}
+.st--pub{background:#fff;border-color:var(--pc-green-200);color:var(--green-deep)}
+
+.uempty{border:1px solid var(--line-strong);background:#fff;padding:40px 24px;text-align:center;color:var(--muted);font-size:12px}
+.uempty b{display:block;font:700 14px/1.3 Arial,Helvetica,sans-serif;color:var(--ink-strong);margin-bottom:6px}
+
+/* ══════════════════════════════════════════════════════════════
+   Monthly Update: editor
+   ══════════════════════════════════════════════════════════════ */
+.ued{padding:22px 28px 8px}
+.ued__grid{display:grid;grid-template-columns:150px 1fr 1fr;gap:12px}
+.ued textarea{min-height:120px;font-size:12px;line-height:1.6}
+.ued textarea#ue-summary{min-height:70px}
+.ued textarea#ue-kpis{min-height:84px;font-family:Consolas,Menlo,monospace;font-size:11.5px}
+.ued__sec{border-top:1px solid var(--line);padding-top:16px;margin-top:6px}
+.ued__help{font-size:10.5px;color:var(--muted);margin:2px 0 14px;line-height:1.6}
+.ued__help code{background:var(--pc-gray-100);border:1px solid var(--line);border-radius:3px;padding:0 4px;font-size:10.5px}
+.ued-imgs{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;align-items:center}
+.ued-img{position:relative;width:92px;height:66px;border:1px solid var(--line-strong);background:#fff}
+.ued-img img{width:100%;height:100%;object-fit:cover;display:block}
+.ued-img__x{
+  position:absolute;top:-7px;right:-7px;width:18px;height:18px;border-radius:999px;
+  border:1px solid var(--line-strong);background:#fff;color:var(--pc-gray-600);cursor:pointer;
+  font:400 11px/16px Arial,Helvetica,sans-serif;text-align:center;padding:0;
+}
+.ued-img__x:hover{border-color:var(--pc-red);color:var(--pc-red-dark)}
+.ued-add{
+  height:66px;padding:0 14px;border:1px dashed var(--line-strong);background:var(--pc-gray-50);
+  color:var(--pc-gray-600);cursor:pointer;font:700 10px/1 Arial,Helvetica,sans-serif;
+  text-transform:uppercase;letter-spacing:.5px;border-radius:0;
+}
+.ued-add:hover{border-color:var(--green);color:var(--green-deep)}
+.ued-add:disabled{opacity:.5;cursor:wait}
+.ued__bar{
+  position:sticky;bottom:0;background:#fff;border-top:1px solid var(--line-strong);
+  padding:12px 28px;display:flex;align-items:center;gap:8px;z-index:5;
+}
+.ued__bar .sp{flex:1}
+.ued__state{font-size:11px;color:var(--muted)}
+
+@media (max-width:1000px){
+  .upd{grid-template-columns:1fr}
+  .upd__rail{position:static}
+  .uhead,.usec__body{padding-left:18px;padding-right:18px}
+  .ued{padding:18px 16px 8px}
+  .ued__grid{grid-template-columns:1fr}
+  .ued__bar{padding:12px 16px;flex-wrap:wrap}
+  .appnav__a{padding:0 9px;letter-spacing:.4px}
+  .appbar__div{display:none}
+}
+@media (max-width:640px){
+  .appbar__inner{padding:0 10px;gap:6px}
+  .mark__logo{height:15px}
+  .hide-sm{display:none}
+  .appnav{margin-left:0}
+  .appnav__a{padding:0 7px;font-size:10px;letter-spacing:.3px}
+  .appbar__btn{padding:6px 7px;font-size:9px;letter-spacing:.3px}
+  .uhead__h1{font-size:22px}
+  .kpi{border-right:0;border-bottom:1px solid var(--line)}
+}
+
+@media print{
+  .appbar__btn,.toolbar,.upd__rail,#notice,.foot,.toast{display:none !important}
+  .upd{grid-template-columns:1fr}
+  body{background:#fff}
+  .card{break-inside:avoid}
+}
 </style>
 </head>
 <body>
@@ -370,7 +536,10 @@ body.is-edit .day:hover .day__add{display:block}
   <div class="appbar__inner">
     <div class="mark"><img class="mark__logo" alt="PartsCheck" src="data:image/png;base64,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" /></div>
     <div class="appbar__div"></div>
-    <div class="appbar__title">Marketing Content Calendar</div>
+    <nav class="appnav">
+      <a class="appnav__a is-on" href="#calendar" data-page="calendar"><span class="hide-sm">Content&nbsp;</span>Calendar</a>
+      <a class="appnav__a" href="#update" data-page="update">Monthly Update</a>
+    </nav>
     <div class="appbar__spacer"></div>
     <button class="appbar__btn" id="btn-lock" type="button">Edit Mode</button>
     <button class="appbar__btn" id="btn-signout" type="button" style="display:none">Sign Out</button>
@@ -381,13 +550,14 @@ body.is-edit .day:hover .day__add{display:block}
 
   <div class="notice" id="notice">
     <b id="notice-title">Demo data.</b>
-    <span id="notice-body">Airtable isn't connected yet — the calendar below is running on seeded sample entries held in your browser. Nothing you add here is saved.</span>
+    <span id="notice-body">Airtable isn't connected yet. The calendar below is running on seeded sample entries held in your browser. Nothing you add here is saved.</span>
   </div>
 
+  <div id="page-calendar">
   <div class="toolbar">
     <div class="monthnav">
       <button class="monthnav__btn" id="nav-prev" type="button" title="Previous month">&#8249;</button>
-      <div class="monthnav__label" id="nav-label">—</div>
+      <div class="monthnav__label" id="nav-label">&nbsp;</div>
       <button class="monthnav__btn" id="nav-next" type="button" title="Next month">&#8250;</button>
       <button class="monthnav__today" id="nav-today" type="button">Today</button>
     </div>
@@ -468,6 +638,95 @@ body.is-edit .day:hover .day__add{display:block}
     </div>
     <div id="lst-wrap"></div>
   </section>
+
+  </div><!-- /page-calendar -->
+
+  <!-- ══════════════ Monthly Update page ══════════════ -->
+  <div id="page-update" style="display:none">
+
+    <div class="toolbar">
+      <div class="monthnav">
+        <button class="monthnav__btn" id="u-prev" type="button" title="Previous update">&#8249;</button>
+        <div class="monthnav__label" id="u-label">Monthly update</div>
+        <button class="monthnav__btn" id="u-next" type="button" title="Next update">&#8250;</button>
+      </div>
+      <div class="toolbar__spacer"></div>
+      <button class="btn-ghost" id="u-copy" type="button">Copy Link</button>
+      <button class="btn-ghost" id="u-edit" type="button" style="display:none">Edit This Update</button>
+      <button class="btn-primary" id="u-new" type="button" style="display:none">New Update</button>
+    </div>
+
+    <div class="notice notice--err" id="u-notice">
+      <b>Can't load monthly updates.</b> <span id="u-notice-body"></span>
+    </div>
+
+    <!-- reading view -->
+    <div class="upd" id="u-view">
+      <div class="upd__main" id="u-article"></div>
+      <aside class="upd__rail">
+        <section class="card">
+          <div class="card__head"><div class="card__label">All updates</div></div>
+          <div id="u-rail"></div>
+        </section>
+      </aside>
+    </div>
+
+    <!-- editor -->
+    <section class="card" id="u-editor" style="display:none">
+      <div class="card__head">
+        <div class="card__label" id="ue-title">Edit update</div>
+        <div class="card__spacer"></div>
+        <span class="st" id="ue-badge"></span>
+      </div>
+      <div class="ued">
+        <div class="ued__grid">
+          <div class="frow">
+            <label class="frow__lab" for="ue-month">Month</label>
+            <input type="month" id="ue-month" />
+            <div class="ferr" id="ue-month-err">Pick a month.</div>
+          </div>
+          <div class="frow">
+            <label class="frow__lab" for="ue-headline">Headline</label>
+            <input type="text" id="ue-headline" placeholder="Optional, e.g. PartsCheck Labs goes live" />
+          </div>
+          <div class="frow">
+            <label class="frow__lab" for="ue-author">Author</label>
+            <input type="text" id="ue-author" placeholder="Harry Robertson, Marketing Manager" />
+          </div>
+        </div>
+
+        <div class="frow">
+          <label class="frow__lab" for="ue-summary">Summary</label>
+          <textarea id="ue-summary" placeholder="Two or three sentences. Most people will only read this, so make it count."></textarea>
+        </div>
+
+        <div class="frow">
+          <label class="frow__lab" for="ue-kpis">Key results</label>
+          <textarea id="ue-kpis" placeholder="Pieces shipped | 13 | Busiest month since July&#10;Labs launch reach | 6,017 | 34.3% opened"></textarea>
+          <div class="fhelp">One tile per line: <b>Label | Value | Note</b>. The note is optional.</div>
+          <div id="ue-kpi-preview"></div>
+        </div>
+
+        <div id="ue-sections"></div>
+
+        <div class="ued__help">
+          Formatting works the same as Airtable:
+          <code>**bold**</code> <code>_italic_</code> <code>[link text](https://...)</code>
+          <code>- bullet</code> <code>1. numbered</code> <code>### heading</code>.
+          Leave a blank line between paragraphs.
+        </div>
+      </div>
+      <div class="ued__bar">
+        <button class="btn-danger" id="ue-delete" type="button">Delete</button>
+        <span class="ued__state" id="ue-state"></span>
+        <div class="sp"></div>
+        <button class="btn-ghost" id="ue-close" type="button">Close</button>
+        <button class="btn-ghost" id="ue-secondary" type="button">Save Draft</button>
+        <button class="btn-primary" id="ue-primary" type="button">Publish</button>
+      </div>
+      <input type="file" id="ue-file" accept="image/*" multiple style="display:none" />
+    </section>
+  </div>
 
   <div class="foot">
     <span id="foot-source">Source: demo data</span>
@@ -551,7 +810,7 @@ body.is-edit .day:hover .day__add{display:block}
       </div>
       <div class="frow">
         <label class="frow__lab" for="f-tag">Campaign / tag</label>
-        <input type="text" id="f-tag" list="taglist" placeholder="Start typing — existing tags will suggest" autocomplete="off" />
+        <input type="text" id="f-tag" list="taglist" placeholder="Start typing and existing tags will suggest" autocomplete="off" />
         <datalist id="taglist"></datalist>
         <div class="fhelp">Free text. Anything new you type becomes a tag from then on.</div>
       </div>
@@ -590,6 +849,23 @@ body.is-edit .day:hover .day__add{display:block}
   </div>
 </div>
 
+
+<!-- ── Monthly update confirm (delete / discard) ─────────────── -->
+<div class="ov" id="ov-uconfirm">
+  <div class="modal modal--sm">
+    <div class="modal__head">
+      <div class="modal__title" id="uc-title">Are you sure?</div>
+      <button class="modal__x" data-close="ov-uconfirm" type="button">&#10005;</button>
+    </div>
+    <div class="modal__body"><div style="font-size:11.5px" id="uc-body"></div></div>
+    <div class="modal__foot">
+      <div class="sp"></div>
+      <button class="btn-ghost" data-close="ov-uconfirm" type="button">Cancel</button>
+      <button class="btn-danger" id="uc-go" type="button">Confirm</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -600,7 +876,8 @@ body.is-edit .day:hover .day__add{display:block}
                    airtable.com/appXXXXXXXXXXXXXX/... — paste that appXXXX id.
    2. AT_TABLE     The table ID (tbl...) or its exact name. The ID is in the
                    URL after the base ID and doesn't break if you rename the table.
-   3. EDIT_PW      The shared edit-mode password. CHANGE THIS.
+   3. AT_UPDATES   The Monthly Updates table ID (tbl...).
+   4. EDIT_PW      The shared edit-mode password. CHANGE THIS.
 
    Until AT_BASE is filled in, the page runs on the seeded demo data below
    and nothing is saved. Fill it in and it switches to live Airtable.
@@ -619,7 +896,8 @@ body.is-edit .day:hover .day__add{display:block}
 const CONFIG = {
   AT_TOKEN : 'patSafFnJImSN8LQH.487c8b040bfa48114e680c44aac09b9501aba4540bf279f2bc1385dfca615a2b',
   AT_BASE  : 'appgKkIAiuV8YGLKv',
-  AT_TABLE : 'tblsuPg8BfY7UmLAt',   /* table ID — survives renaming the table */
+  AT_TABLE : 'tblsuPg8BfY7UmLAt',   /* calendar table ID, survives renaming the table */
+  AT_UPDATES: 'tblVgiDztebJqBK0h',  /* Monthly Updates table ID */
   EDIT_PW  : 'partscheck2027'       /* ←— CHANGE THIS */
 };
 
@@ -636,7 +914,7 @@ const CHANNELS = [
 ];
 const CH = {}; CHANNELS.forEach(c => CH[c.name] = c);
 const chColor = n => (CH[n] ? CH[n].color : 'var(--pc-gray-400)');
-const chShort = n => (CH[n] ? CH[n].short : (n || '—').toUpperCase());
+const chShort = n => (CH[n] ? CH[n].short : (n || 'Other').toUpperCase());
 
 const BRANDS  = ['PartsCheck','FlexiQuote'];
 const STATUSES = ['Planned','Scheduled','Live/Sent','Done'];
@@ -668,78 +946,102 @@ function brandLabel(brand){
    ═══════════════════════════════════════════════════════════════ */
 const SEED = [
   /* ── April 2026 ── */
-  ['The Workshop — April edition','2026-04-02','Email','PartsCheck','Newsletter','All registered repairers','Done',''],
+  ['The Workshop: April edition','2026-04-02','Email','PartsCheck','Newsletter','All registered repairers','Done',''],
   ['Labs: teardown of a Hilux front-end quote','2026-04-09','Social','PartsCheck','PartsCheck Labs','LinkedIn followers','Done',''],
-  ['Smart Receipting rollout — what changes','2026-04-14','Email','PartsCheck','Product Marketing','Supplier contacts','Done',''],
+  ['Smart Receipting rollout: what changes','2026-04-14','Email','PartsCheck','Product Marketing','Supplier contacts','Done',''],
   ['Labs: what "no longer available" really costs','2026-04-17','Social','PartsCheck','PartsCheck Labs','LinkedIn followers','Done',''],
   ['Value calculator refresh on partscheck.net.au','2026-04-22','Website','PartsCheck','Website','Site visitors','Done',''],
-  ['Per-part ETA — supplier survey','2026-04-29','Email','PartsCheck','Product Marketing','Supplier contacts','Done',''],
+  ['Per-part ETA: supplier survey','2026-04-29','Email','PartsCheck','Product Marketing','Supplier contacts','Done',''],
   ['FlexiQuote Release 1.56 notes','2026-04-21','Email','FlexiQuote','Product Marketing','FlexiQuote users','Done',''],
 
   /* ── May 2026 ── */
-  ['The Workshop — May edition','2026-05-05','Email','PartsCheck','Newsletter','All registered repairers','Done',''],
+  ['The Workshop: May edition','2026-05-05','Email','PartsCheck','Newsletter','All registered repairers','Done',''],
   ['Labs: parallel vs aftermarket, on real quotes','2026-05-08','Social','PartsCheck','PartsCheck Labs','LinkedIn followers','Done',''],
-  ['Direct mail pack — wave 1','2026-05-12','Print/Physical','PartsCheck','Reactivation','iBodyShop + Repair Connection shops','Done',''],
-  ['Reactivation email 1 — dormant shops','2026-05-20','Email','PartsCheck','Reactivation','Dormant registered shops','Done',''],
+  ['Direct mail pack: wave 1','2026-05-12','Print/Physical','PartsCheck','Reactivation','iBodyShop + Repair Connection shops','Done',''],
+  ['Reactivation email 1: dormant shops','2026-05-20','Email','PartsCheck','Reactivation','Dormant registered shops','Done',''],
   ['Labs: NLA report walkthrough','2026-05-22','Social','PartsCheck','PartsCheck Labs','LinkedIn followers','Done',''],
-  ['Estimator training — live session','2026-05-26','Webinar','PartsCheck','Training','Repairer estimators','Done',''],
-  ['LinkedIn — reactivation retargeting','2026-05-28','Paid Ads','PartsCheck','Reactivation','Lapsed shop decision makers','Done',''],
+  ['Estimator training: live session','2026-05-26','Webinar','PartsCheck','Training','Repairer estimators','Done',''],
+  ['LinkedIn: reactivation retargeting','2026-05-28','Paid Ads','PartsCheck','Reactivation','Lapsed shop decision makers','Done',''],
   ['FlexiQuote Release 1.58 notes','2026-05-13','Email','FlexiQuote','Product Marketing','FlexiQuote users','Done',''],
   ['AutoSave feature clip','2026-05-27','Social','FlexiQuote','Product Marketing','LinkedIn followers','Done',''],
 
   /* ── June 2026 ── */
-  ['The Workshop — June edition','2026-06-02','Email','PartsCheck','Newsletter','All registered repairers','Done',''],
+  ['The Workshop: June edition','2026-06-02','Email','PartsCheck','Newsletter','All registered repairers','Done',''],
   ['Labs: quote turnaround benchmark','2026-06-05','Social','PartsCheck','PartsCheck Labs','LinkedIn followers','Done',''],
-  ['Reactivation email 2 — second touch','2026-06-09','Email','PartsCheck','Reactivation','Dormant registered shops','Done',''],
+  ['Reactivation email 2: second touch','2026-06-09','Email','PartsCheck','Reactivation','Dormant registered shops','Done',''],
   ['Expo 2026 landing page live','2026-06-17','Website','PartsCheck','Expo 2026','Site visitors','Done',''],
   ['Labs: supplier fill rates by state','2026-06-19','Social','PartsCheck','PartsCheck Labs','LinkedIn followers','Done',''],
   ['Terms update notice','2026-06-25','Email','PartsCheck','Compliance','All account holders','Done',''],
   ['FlexiQuote Release 1.59 notes','2026-06-11','Email','FlexiQuote','Product Marketing','FlexiQuote users','Done',''],
 
   /* ── July 2026 ── */
-  ['The Workshop — July edition','2026-07-01','Email','PartsCheck','Newsletter','All registered repairers','Done',''],
+  ['The Workshop: July edition','2026-07-01','Email','PartsCheck','Newsletter','All registered repairers','Done',''],
   ['Labs: EOFY parts pricing wrap','2026-07-03','Social','PartsCheck','PartsCheck Labs','LinkedIn followers','Done',''],
-  ['PartsCheck Rewards pilot — Week 0 invites','2026-07-07','Email','PartsCheck','Loyalty','Pilot list','Done',''],
-  ['Direct mail pack — wave 2','2026-07-14','Print/Physical','PartsCheck','Reactivation','iBodyShop + Repair Connection shops','Done',''],
+  ['PartsCheck Rewards pilot: Week 0 invites','2026-07-07','Email','PartsCheck','Loyalty','Pilot list','Done',''],
+  ['Direct mail pack: wave 2','2026-07-14','Print/Physical','PartsCheck','Reactivation','iBodyShop + Repair Connection shops','Done',''],
   ['Labs: donor part economics','2026-07-17','Social','PartsCheck','PartsCheck Labs','LinkedIn followers','Done',''],
   ['Rewards pilot onboarding session','2026-07-20','Webinar','PartsCheck','Loyalty','Pilot list','Done',''],
-  ['Gold Membership — heads up to suppliers','2026-07-24','Email','PartsCheck','Gold Membership','Gold suppliers','Done',''],
-  ['Google search — brand + competitor terms','2026-07-30','Paid Ads','PartsCheck','Top Funnel','Unregistered shops','Done',''],
+  ['Gold Membership: heads up to suppliers','2026-07-24','Email','PartsCheck','Gold Membership','Gold suppliers','Done',''],
+  ['Google search: brand + competitor terms','2026-07-30','Paid Ads','PartsCheck','Top Funnel','Unregistered shops','Done',''],
   ['FlexiQuote Release 1.60 notes','2026-07-09','Email','FlexiQuote','Product Marketing','FlexiQuote users','Done',''],
-  ['FlexiQuote site redesign — new home page','2026-07-28','Website','FlexiQuote','Website','Site visitors','Done',''],
+  ['FlexiQuote site redesign: new home page','2026-07-28','Website','FlexiQuote','Website','Site visitors','Done',''],
 
   /* ── August 2026 ── */
-  ['The Workshop — August edition','2026-08-04','Email','PartsCheck','Newsletter','All registered repairers','Done',''],
+  ['The Workshop: August edition','2026-08-04','Email','PartsCheck','Newsletter','All registered repairers','Done',''],
   ['Labs: ETA breaches by region','2026-08-07','Social','PartsCheck','PartsCheck Labs','LinkedIn followers','Done',''],
-  ['Rewards pilot — Week 4 points statement','2026-08-12','Email','PartsCheck','Loyalty','Pilot list','Done',''],
-  ['Gold Membership fee — formal notice','2026-08-13','Email','PartsCheck','Gold Membership','Gold suppliers','Done',''],
+  ['Rewards pilot: Week 4 points statement','2026-08-12','Email','PartsCheck','Loyalty','Pilot list','Done',''],
+  ['Gold Membership fee: formal notice','2026-08-13','Email','PartsCheck','Gold Membership','Gold suppliers','Done',''],
   ['Labs: what a good quote request looks like','2026-08-21','Social','PartsCheck','PartsCheck Labs','LinkedIn followers','Done',''],
-  ['Expo 2026 — save the date','2026-08-26','Email','PartsCheck','Expo 2026','All registered repairers','Done',''],
+  ['Expo 2026: save the date','2026-08-26','Email','PartsCheck','Expo 2026','All registered repairers','Done',''],
   ['Supplier ETA survey debrief','2026-08-27','Webinar','PartsCheck','Product Marketing','Supplier contacts','Done',''],
   ['FlexiQuote August offer','2026-08-19','Email','FlexiQuote','Promotion','FlexiQuote trial list','Done',''],
 
   /* ── September 2026 ── */
-  ['The Workshop — September edition','2026-09-01','Email','PartsCheck','Newsletter','All registered repairers','Done',''],
+  ['The Workshop: September edition','2026-09-01','Email','PartsCheck','Newsletter','All registered repairers','Done',''],
   ['Labs: the real cost of a re-quote','2026-09-04','Social','PartsCheck','PartsCheck Labs','LinkedIn followers','Done',''],
-  ['Rewards pilot — Week 8 recap','2026-09-10','Email','PartsCheck','Loyalty','Pilot list','Done',''],
-  ['Direct mail pack — wave 3','2026-09-10','Print/Physical','PartsCheck','Reactivation','Dormant registered shops','Live/Sent',''],
+  ['Rewards pilot: Week 8 recap','2026-09-10','Email','PartsCheck','Loyalty','Pilot list','Done',''],
+  ['Direct mail pack: wave 3','2026-09-10','Print/Physical','PartsCheck','Reactivation','Dormant registered shops','Live/Sent',''],
   ['Labs: supplier response times, Q1 FY27','2026-09-17','Social','PartsCheck','PartsCheck Labs','LinkedIn followers','Live/Sent',''],
-  ['Gold Membership — invoicing starts','2026-09-21','Email','PartsCheck','Gold Membership','Gold suppliers','Scheduled',''],
-  ['Estimator training — session 2','2026-09-25','Webinar','PartsCheck','Training','Repairer estimators','Scheduled',''],
-  ['Expo 2026 — stand booking + agenda','2026-09-29','Email','PartsCheck','Expo 2026','All registered repairers','Planned',''],
+  ['Gold Membership: invoicing starts','2026-09-21','Email','PartsCheck','Gold Membership','Gold suppliers','Scheduled',''],
+  ['Estimator training: session 2','2026-09-25','Webinar','PartsCheck','Training','Repairer estimators','Scheduled',''],
+  ['Expo 2026: stand booking + agenda','2026-09-29','Email','PartsCheck','Expo 2026','All registered repairers','Planned',''],
   ['FlexiQuote Release 1.61 notes','2026-09-16','Email','FlexiQuote','Product Marketing','FlexiQuote users','Live/Sent',''],
-  ['LinkedIn — quoting speed campaign','2026-09-30','Paid Ads','FlexiQuote','Top Funnel','Unregistered shops','Planned',''],
+  ['LinkedIn: quoting speed campaign','2026-09-30','Paid Ads','FlexiQuote','Top Funnel','Unregistered shops','Planned',''],
 
   /* ── October 2026 ── */
-  ['The Workshop — October edition','2026-10-06','Email','PartsCheck','Newsletter','All registered repairers','Planned',''],
+  ['The Workshop: October edition','2026-10-06','Email','PartsCheck','Newsletter','All registered repairers','Planned',''],
   ['Labs: October teardown','2026-10-09','Social','PartsCheck','PartsCheck Labs','LinkedIn followers','Planned',''],
-  ['Rewards — pilot results to full base','2026-10-13','Email','PartsCheck','Loyalty','All registered repairers','Planned',''],
+  ['Rewards: pilot results to full base','2026-10-13','Email','PartsCheck','Loyalty','All registered repairers','Planned',''],
   ['Gold Membership Q&A for suppliers','2026-10-20','Webinar','PartsCheck','Gold Membership','Gold suppliers','Planned',''],
   ['FlexiQuote Release 1.62 notes','2026-10-21','Email','FlexiQuote','Product Marketing','FlexiQuote users','Planned','']
 ].map((r,i) => ({
   id:'demo-'+i, title:r[0], date:r[1], channel:r[2], brand:r[3],
   tag:r[4], audience:r[5], status:r[6], notes:r[7]
 }));
+
+
+/* Demo monthly update, only used when AT_BASE is blank (preview copies). */
+const SEED_UPDATES = [{
+ "id": "demo-u1",
+ "month": "2026-09",
+ "status": "Published",
+ "headline": "PartsCheck Labs goes live",
+ "author": "Harry Robertson, Marketing Manager",
+ "summary": "September was our busiest month since we started tracking output in July. PartsCheck Labs launched to our whole database, the loyalty pilot ran its first Double Points Week, and FlexiQuote ran a six months free offer. We also lined up three big pieces landing over October and November: Margin Rules, the new webinar program and the Gold membership renewals.",
+ "kpis": "Pieces shipped | 13 | Email, social, web and paid. Our busiest month since July\nLabs launch reach | 6,017 | People emailed on 15 Sep, 34.3% opened\nThe Workshop #2 | 43.3% | Open rate, repairer newsletter\nThe Dispatch #2 | 39.9% | Open rate, supplier newsletter",
+ "recap": "### PartsCheck Labs is live\n\nOn 15 September we launched **PartsCheck Labs**, our new research series built from what we see on the parts list. Edition 01, written by Krissy, went to our full repairer and supplier database: 6,017 people, with 34.3% opening it. It was backed by LinkedIn and Facebook posts, the new site at [labs.partscheck.com.au](https://labs.partscheck.com.au), a publisher eDM through Yaffa and a feature article in the September/October issue of Australasian Paint & Panel. Anyone who didn't open the first email got a resend.\n\n### Loyalty pilot\n\nThe pilot sent its August recap to every pilot segment, then ran its first **Double Points Week**: an early notice on 4 September and a kick-off email on 7 September. The kick-off was opened by 52.2% of pilot shops.\n\n### Newsletters\n\nThe second issues of **The Workshop** (repairers) and **The Dispatch** (suppliers) went out on 4 September, with open rates of 43.3% and 39.9%.\n\n### FlexiQuote\n\nFlexiQuote ran a **6 Months Free** offer on 8 September, with a resend the next day to anyone who hadn't opened it. Earlier in the month, \"See who's in the quote before you touch it\" went to FlexiQuote users with a 50.6% open rate.",
+ "working": "- **Margin Rules, Phase 1.** One of the biggest changes to PartsCheck in years, and a big change to learn, so it needs proper support. The marketing plan covers before, during and after release, with emails, videos, a landing page and webinars. The pilot group goes live on **12 October**, with full rollout on **17 November**.\n- **Webinar program.** Two series: *PartsCheck Essentials* for registered shops that aren't using us yet, and *Get More From PartsCheck* for active users, run with the commercial team. The first session, **Master the Grid**, is planned for **Thursday 22 October**.\n- **Gold membership renewals.** Emails explaining that Gold is moving to automatic annual renewal started on 1 October. They go out in batches by renewal date with four weeks' notice, and larger suppliers hear from their Account Director first. If a supplier raises it with you, that's the background.\n- **Labs, round two.** Labs posts every fortnight on LinkedIn and Facebook from October, plus our first paid social test across both.\n- **Reaching shops that don't use us.** A posted pack going to shops on other platforms and to registered shops that have gone quiet, using Labs as the reason to get in touch. Planned for late October.",
+ "industry": "### ACCC blocks IAG's takeover of RAC Insurance\n\nOn 23 September the ACCC blocked IAG's $1.35 billion bid for RAC Insurance in WA, the first decision under the new merger rules. The combined insurer would have held an estimated 55 to 65% of WA motor insurance. The MTAA welcomed the decision as protecting repairers' bargaining power. IAG plans to seek approval on public benefit grounds.\n\n*Why it matters:* fewer, bigger insurers means more control over repair networks and how parts get sourced. ([Australasian Paint & Panel](https://www.paintandpanel.com.au/news/news/accc-blocks-iag-takeover-of-rac-insurance))\n\n### First Right to Repair court case\n\nIn late August the ACCC took Subaru Australia to the Federal Court, alleging it gave independent repairers worse access to repair information than its own dealers. It's the first case under the Motor Vehicle Information Sharing Scheme. Insurers are also pushing for the scheme to cover parts, not just information.\n\n*Why it matters:* if parts are added, independent shops get more options and more suppliers to compare. ([Carsales](https://www.carsales.com.au/editorial/details/accc-takes-subaru-australia-to-court-152807/))\n\n### AMA Group is chasing parts savings\n\nAMA Group, owner of Capital S.M.A.R.T, reported record revenue of $1.04 billion and a return to profit, and called procurement one of its biggest opportunities. Its ACM Parts business is back in profit on the back of recycled, parallel and aftermarket parts.\n\n*Why it matters:* the country's largest repair group is openly going after parts savings, which is the problem PartsCheck solves. ([AMA Group FY26 results](https://amagroupltd.com/wp-content/uploads/2026/08/FY26-Full-Year-Results-Presentation.pdf))\n\n### \"Parts pairing\" on the radar\n\nThe AAAA raised parts pairing at a global Right to Repair meeting in Frankfurt: replacement parts that won't work until the carmaker authorises them.\n\n*Why it matters:* if it spreads, it could limit non-genuine and recycled options on newer vehicles. ([Australasian Paint & Panel](https://www.paintandpanel.com.au/news/news/global-meeting-highlights-new-challenges-for-automotive-workshops))\n\n### EVs pass 500,000\n\nAustralia now has more than 500,000 battery EVs on the road, and EVs were a record 24.9% of new car sales in August. Round 3 of the federal DRIVEN program now covers up to 80% of EV equipment costs for independent repairers, capped at $50,000 a site.\n\n*Why it matters:* more EVs in the repair mix means new types of parts and new supplier relationships. ([Australasian Paint & Panel](https://www.paintandpanel.com.au/news/news/australia-passes-major-milestone-with-500-000-bevs))",
+ "competitors": "### iBodyShop and Repair Connection: quiet in Australia\n\nNo Australian news from iBodyShop in September. Its recent focus has been AI-assisted estimating and growing in the UK, where it joined industry group ARC360 in May. Repair Connection still pitches suppliers on access to \"1300+ iBodyShop customers\".\n\n*Our read:* their effort is going into estimating and the UK rather than new Australian parts features. Worth watching, but nothing to respond to right now.\n\n### Partly raises US$50 million\n\nNZ-founded parts platform Partly, whose Repair app lets collision repairers compare live supplier pricing and stock, raised US$50 million at a reported US$500 million valuation. Reports in late August suggest its next big growth push is the US and UK rather than a large Sydney team. ([iTWire](https://itwire.com/business-it-news/enterprise-solutions/partly-raises-71-million-to-teach-ai-the-extraordinarily-difficult-language-of-car-parts))\n\n*Our read:* the most direct like-for-like competitor in parts procurement across Australia and NZ, and now very well funded.\n\n### Background: PartsTrader now sits with Mitchell's owner\n\nEnlyte, which owns Mitchell, completed its purchase of PartsTrader in April. There have been no Australian moves since. ([CollisionWeek](https://collisionweek.com/2026/04/07/enlyte-completes-acquisition-partstrader/))\n\n*Our read:* much bigger backing if PartsTrader decides to push harder into Australia.",
+ "coming": "- **1 Oct:** Gold membership renewal emails start, then go out on the 1st of each month\n- **12 Oct:** Margin Rules pilot group goes live\n- **22 Oct:** First webinar, Master the Grid\n- **October:** The Workshop #3 and The Dispatch #3, with The Workshop leading on the webinar program\n- **October:** Labs posts every fortnight, plus our first paid social test\n- **Late October:** Posted pack to shops on other platforms and to quiet registered shops\n- **17 Nov:** Margin Rules full rollout",
+ "published": "2026-10-08",
+ "images": {
+  "recap": [],
+  "working": [],
+  "industry": [],
+  "competitors": []
+ }
+}];
 
 /* ═══════════════════════════════════════════════════════════════
    State
@@ -801,7 +1103,7 @@ async function atList(){
   do {
     const url = AT_URL() + '?pageSize=100' + (offset ? '&offset=' + offset : '');
     const r = await fetch(url, { headers:{ 'Authorization':'Bearer ' + CONFIG.AT_TOKEN } });
-    if(!r.ok) throw new Error('Airtable ' + r.status + ' — ' + (await r.text()).slice(0,180));
+    if(!r.ok) throw new Error('Airtable ' + r.status + ': ' + (await r.text()).slice(0,180));
     const d = await r.json();
     out = out.concat((d.records||[]).map(fromRec));
     offset = d.offset || null;
@@ -814,7 +1116,7 @@ async function atCreate(e){
     headers:{ 'Authorization':'Bearer '+CONFIG.AT_TOKEN, 'Content-Type':'application/json' },
     body: JSON.stringify({ fields: toFields(e), typecast:true })
   });
-  if(!r.ok) throw new Error('Airtable ' + r.status + ' — ' + (await r.text()).slice(0,180));
+  if(!r.ok) throw new Error('Airtable ' + r.status + ': ' + (await r.text()).slice(0,180));
   return fromRec(await r.json());
 }
 async function atUpdate(id, e){
@@ -823,14 +1125,14 @@ async function atUpdate(id, e){
     headers:{ 'Authorization':'Bearer '+CONFIG.AT_TOKEN, 'Content-Type':'application/json' },
     body: JSON.stringify({ fields: toFields(e), typecast:true })
   });
-  if(!r.ok) throw new Error('Airtable ' + r.status + ' — ' + (await r.text()).slice(0,180));
+  if(!r.ok) throw new Error('Airtable ' + r.status + ': ' + (await r.text()).slice(0,180));
   return fromRec(await r.json());
 }
 async function atDelete(id){
   const r = await fetch(AT_URL() + '/' + id, {
     method:'DELETE', headers:{ 'Authorization':'Bearer ' + CONFIG.AT_TOKEN }
   });
-  if(!r.ok) throw new Error('Airtable ' + r.status + ' — ' + (await r.text()).slice(0,180));
+  if(!r.ok) throw new Error('Airtable ' + r.status + ': ' + (await r.text()).slice(0,180));
 }
 
 async function loadData(){
@@ -860,7 +1162,7 @@ function showNotice(kind, msg){
   }else{
     n.classList.remove('notice--err');
     $('notice-title').textContent = 'Demo data.';
-    $('notice-body').textContent  = "Airtable isn't connected yet — paste your base ID into CONFIG.AT_BASE at the top of this file. Until then nothing you add here is saved.";
+    $('notice-body').textContent  = "Airtable isn't connected yet. Paste your base ID into CONFIG.AT_BASE at the top of this file. Until then nothing you add here is saved.";
     $('foot-source').textContent  = 'Source: demo data';
   }
 }
@@ -875,7 +1177,7 @@ const pad2   = n => (n<10?'0':'') + n;
 const iso    = d => d.getFullYear() + '-' + pad2(d.getMonth()+1) + '-' + pad2(d.getDate());
 const TODAY  = iso(new Date());
 function prettyDate(s){
-  if(!s) return '—';
+  if(!s) return 'No date';
   const p = s.split('-'); if(p.length !== 3) return s;
   const d = new Date(+p[0], +p[1]-1, +p[2]);
   return DOW[(d.getDay()+6)%7] + ' ' + (+p[2]) + ' ' + MONTHS[+p[1]-1].slice(0,3) + ' ' + p[0];
@@ -1014,9 +1316,9 @@ function rowHTML(e){
     + '<td class="lg__date">'+esc(prettyDate(e.date))+'</td>'
     + '<td><div class="lg__title">'+esc(e.title)+'</div>'
     +   (e.audience ? '<div class="lg__aud">'+esc(e.audience)+'</div>' : '')+'</td>'
-    + '<td><span class="chip chip--ch" style="border-left-color:'+chColor(e.channel)+'">'+esc(e.channel||'—')+'</span></td>'
+    + '<td><span class="chip chip--ch" style="border-left-color:'+chColor(e.channel)+'">'+esc(e.channel||'Other')+'</span></td>'
     + '<td>'+brandLabel(e.brand)+'</td>'
-    + '<td>'+(e.tag ? '<span class="chip chip--tag">'+esc(e.tag)+'</span>' : '<span style="color:var(--faint)">—</span>')+'</td>'
+    + '<td>'+(e.tag ? '<span class="chip chip--tag">'+esc(e.tag)+'</span>' : '<span style="color:var(--faint)">None</span>')+'</td>'
     + '<td><span class="st st--'+(ST_CLASS[e.status]||'planned')+'">'+esc(e.status||'Planned')+'</span></td>'
     + '</tr>';
 }
@@ -1070,19 +1372,19 @@ function linkify(s){
 }
 function openDetail(id){
   const e = DATA.find(x => x.id === id);
-  if(!e){ toast("That entry is no longer in the calendar — refresh the page."); return; }
+  if(!e){ toast("That entry is no longer in the calendar. Refresh the page."); return; }
   OPEN_ID = id;
   $('ov-detail').dataset.openEntry = id;   /* NOT data-entry — that selector opens the panel */
   $('det-title').innerHTML = tickSVG(e.brand,16) + ' ' + esc(e.title);
   const row = (k,v) => '<div class="dl__row"><div class="dl__k">'+k+'</div><div class="dl__v">'+v+'</div></div>';
   $('det-body').innerHTML =
       row('Date',      esc(prettyDate(e.date)))
-    + row('Channel',   '<span class="chip chip--ch" style="border-left-color:'+chColor(e.channel)+'">'+esc(e.channel||'—')+'</span>')
+    + row('Channel',   '<span class="chip chip--ch" style="border-left-color:'+chColor(e.channel)+'">'+esc(e.channel||'Other')+'</span>')
     + row('Brand',     brandLabel(e.brand))
-    + row('Campaign',  e.tag ? '<span class="chip chip--tag">'+esc(e.tag)+'</span>' : '—')
-    + row('Audience',  esc(e.audience || '—'))
+    + row('Campaign',  e.tag ? '<span class="chip chip--tag">'+esc(e.tag)+'</span>' : 'None')
+    + row('Audience',  esc(e.audience || 'Not set'))
     + row('Status',    '<span class="st st--'+(ST_CLASS[e.status]||'planned')+'">'+esc(e.status||'Planned')+'</span>')
-    + row('Notes / link', e.notes ? linkify(e.notes) : '—');
+    + row('Notes / link', e.notes ? linkify(e.notes) : 'None');
   $('det-edit').style.display   = EDITING ? '' : 'none';
   $('det-delete').style.display = EDITING ? '' : 'none';
   show('ov-detail');
@@ -1147,7 +1449,7 @@ async function saveForm(){
     hide('ov-form'); hide('ov-detail');
     CUR = new Date(+e.date.slice(0,4), +e.date.slice(5,7)-1, 1);
     render();
-    toast((FORM_ID ? 'Updated' : 'Added') + ' — ' + e.title + (LIVE ? '' : ' (demo only, not saved)'));
+    toast((FORM_ID ? 'Updated' : 'Added') + ': ' + e.title + (LIVE ? '' : ' (demo only, not saved)'));
   }catch(err){
     console.warn(err);
     toast("Couldn't save to Airtable: " + err.message);
@@ -1164,7 +1466,7 @@ async function doDelete(){
     DATA = DATA.filter(x => x.id !== id);
     hide('ov-confirm'); hide('ov-detail');
     render();
-    toast('Deleted — ' + (e ? e.title : 'entry') + (LIVE ? '' : ' (demo only)'));
+    toast('Deleted: ' + (e ? e.title : 'entry') + (LIVE ? '' : ' (demo only)'));
   }catch(err){
     console.warn(err);
     toast("Couldn't delete: " + err.message);
@@ -1189,6 +1491,7 @@ function setEdit(on){
   $('btn-add').style.display     = on ? '' : 'none';
   if(on) sessionStorage.setItem('pc_cal_edit','1'); else sessionStorage.removeItem('pc_cal_edit');
   if(OPEN_ID && $('ov-detail').classList.contains('show')) openDetail(OPEN_ID);
+  if(PAGE === 'update'){ if(!on && UED){ UED = null; UED_DIRTY = false; } renderUpdatePage(); }
 }
 function tryLogin(){
   if($('login-pw').value === CONFIG.EDIT_PW){
@@ -1284,13 +1587,13 @@ function currentEntryId(){
 }
 $('det-edit').addEventListener('click', () => {
   const id = currentEntryId();
-  if(!id){ toast("Couldn't tell which entry that was — close this and open it again."); return; }
+  if(!id){ toast("Couldn't tell which entry that was. Close this and open it again."); return; }
   try{ openForm(id, null); }
   catch(err){ console.error(err); toast("Couldn't open the edit form: " + err.message); }
 });
 $('det-delete').addEventListener('click', () => {
   const id = currentEntryId();
-  if(!id){ toast("Couldn't tell which entry that was — close this and open it again."); return; }
+  if(!id){ toast("Couldn't tell which entry that was. Close this and open it again."); return; }
   const e = DATA.find(x => x.id === id);
   PENDING_DELETE = id;
   $('confirm-name').textContent = e ? e.title : 'this entry';
@@ -1298,15 +1601,633 @@ $('det-delete').addEventListener('click', () => {
 });
 $('confirm-go').addEventListener('click', doDelete);
 
+
+/* ═══════════════════════════════════════════════════════════════
+   MONTHLY UPDATE
+   A second page on the same file. One Airtable row per month in the
+   "Monthly Updates" table (CONFIG.AT_UPDATES). Public viewers see
+   Published rows only; drafts appear in edit mode.
+
+   Links:  #calendar          the content calendar (default)
+           #update            the latest published update
+           #update/2026-09    a specific month
+   ═══════════════════════════════════════════════════════════════ */
+const UF = {
+  month:'Month', status:'Status', headline:'Headline', author:'Author',
+  summary:'Summary', kpis:'Key Results', recap:'Recap', working:'Working On',
+  industry:'Industry News', competitors:'Competitor Movements', coming:'Coming Up',
+  published:'Published Date'
+};
+const USECTIONS = [
+  { key:'recap',       img:'Recap Images',       label:'Recap',                title:m => 'What happened in ' + monthName(m) },
+  { key:'working',     img:'Working On Images',  label:"What we're working on", title:() => "What we're working on" },
+  { key:'industry',    img:'Industry Images',    label:'Industry news',        title:() => 'Industry news' },
+  { key:'competitors', img:'Competitor Images',  label:'Competitor movements', title:() => 'Competitor movements' },
+  { key:'coming',      img:null,                 label:'Coming up',            title:m => 'Coming up in ' + monthName(shiftMonth(m, 1)) }
+];
+const DEFAULT_AUTHOR = 'Harry Robertson, Marketing Manager';
+
+let UPDATES  = [];
+let U_LIVE   = false;
+let PAGE     = 'calendar';
+let U_MONTH  = null;          /* month in the URL, or null for "latest" */
+let UED      = null;          /* the update being edited */
+let UED_DIRTY = false;
+let UC_ACTION = null;         /* callback for the confirm modal */
+
+const UT_URL = () => 'https://api.airtable.com/v0/' + CONFIG.AT_BASE + '/' + encodeURIComponent(CONFIG.AT_UPDATES);
+
+/* ── month helpers ───────────────────────────────────────────── */
+function monthName(m){
+  if(!/^\d{4}-\d{2}$/.test(m||'')) return m || '';
+  return MONTHS[+m.slice(5,7)-1] + ' ' + m.slice(0,4);
+}
+function shiftMonth(m, n){
+  const d = new Date(+m.slice(0,4), +m.slice(5,7)-1+n, 1);
+  return d.getFullYear() + '-' + pad2(d.getMonth()+1);
+}
+/* Accepts 2026-09, 2026-9, 09/2026, Sep 2026, September 2026 */
+function normMonth(v){
+  const s = String(v||'').trim();
+  let m = s.match(/^(\d{4})-(\d{1,2})/);
+  if(m) return m[1] + '-' + pad2(+m[2]);
+  m = s.match(/^(\d{1,2})[\/.](\d{4})$/);
+  if(m) return m[2] + '-' + pad2(+m[1]);
+  m = s.match(/^([A-Za-z]+)\s+(\d{4})$/);
+  if(m){
+    const i = MONTHS.findIndex(x => x.toLowerCase().indexOf(m[1].toLowerCase().slice(0,3)) === 0);
+    if(i > -1) return m[2] + '-' + pad2(i+1);
+  }
+  return s;
+}
+
+/* ── safe markdown (Airtable rich text) ──────────────────────────
+   Everything is HTML-escaped first; only http(s)/mailto links survive.
+   The token in this file can write to the base, so content is never
+   trusted as HTML. */
+function safeUrl(u){
+  u = String(u||'').trim();
+  if(/^https?:\/\//i.test(u) || /^mailto:/i.test(u)) return u;
+  if(/^www\./i.test(u)) return 'https://' + u;
+  return null;
+}
+function mdInline(src, allowLinks){
+  if(allowLinks === undefined) allowLinks = true;
+  const slots = [];
+  const keep = h => '\u0000' + (slots.push(h) - 1) + '\u0000';
+  let s = String(src == null ? '' : src);
+  s = s.replace(/\\([\\`*_{}\[\]()#+\-.!~>|"'])/g, (_, c) => keep(esc(c)));
+  s = s.replace(/`([^`]+)`/g, (_, c) => keep('<code>' + esc(c) + '</code>'));
+  if(allowLinks){
+    s = s.replace(/\[([^\]]+)\]\(\s*<?([^)\s>]+)>?\s*\)/g, (all, t, u) => {
+      const href = safeUrl(u);
+      return href ? keep('<a href="' + esc(href) + '" target="_blank" rel="noopener noreferrer">' + mdInline(t, false) + '</a>') : t;
+    });
+    s = s.replace(/\bhttps?:\/\/[^\s<]*[^\s<.,;:!?)\]'"]/g,
+      u => keep('<a href="' + esc(u) + '" target="_blank" rel="noopener noreferrer">' + esc(u) + '</a>'));
+  }
+  s = esc(s);
+  s = s.replace(/\*\*(?=\S)([\s\S]*?\S)\*\*/g, '<strong>$1</strong>')
+       .replace(/__(?=\S)([\s\S]*?\S)__/g, '<strong>$1</strong>')
+       .replace(/~~(?=\S)([\s\S]*?\S)~~/g, '<del>$1</del>')
+       .replace(/(^|[^\w*])\*(?=\S)([^*]*?\S)\*(?![\w*])/g, '$1<em>$2</em>')
+       .replace(/(^|[^\w_])_(?=\S)([^_]*?\S)_(?![\w_])/g, '$1<em>$2</em>');
+  return s.replace(/\u0000(\d+)\u0000/g, (_, i) => slots[+i]);
+}
+function md(src){
+  const lines = String(src || '').replace(/\r\n?/g, '\n').split('\n');
+  let out = '', para = [], list = null, quote = [];
+  const flushPara  = () => { if(para.length){ out += '<p>' + para.map(l => mdInline(l)).join('<br>') + '</p>'; para = []; } };
+  const flushQuote = () => { if(quote.length){ out += '<blockquote>' + quote.map(l => mdInline(l)).join('<br>') + '</blockquote>'; quote = []; } };
+  const flushList  = () => {
+    if(!list) return;
+    out += '<' + list.type + '>' + list.items.map(it =>
+      '<li>' + mdInline(it.text) +
+      (it.sub.length ? '<ul>' + it.sub.map(x => '<li>' + mdInline(x) + '</li>').join('') + '</ul>' : '') +
+      '</li>').join('') + '</' + list.type + '>';
+    list = null;
+  };
+  const flushAll = () => { flushPara(); flushList(); flushQuote(); };
+
+  for(let i = 0; i < lines.length; i++){
+    const raw = lines[i], line = raw.replace(/\s+$/, '');
+    let m;
+    if(/^\s*```/.test(line)){
+      flushAll(); const buf = []; i++;
+      while(i < lines.length && !/^\s*```/.test(lines[i])){ buf.push(lines[i]); i++; }
+      out += '<pre><code>' + esc(buf.join('\n')) + '</code></pre>'; continue;
+    }
+    if(!line.trim()){ flushAll(); continue; }
+    if((m = line.match(/^\s*(#{1,6})\s+(.*)$/))){
+      flushAll(); const h = m[1].length === 1 ? 'h3' : 'h4';
+      out += '<' + h + '>' + mdInline(m[2].replace(/\s+#+\s*$/, '')) + '</' + h + '>'; continue;
+    }
+    if(/^\s*(-{3,}|\*{3,}|_{3,})\s*$/.test(line)){ flushAll(); out += '<hr>'; continue; }
+    if((m = line.match(/^\s*>\s?(.*)$/))){ flushPara(); flushList(); quote.push(m[1]); continue; }
+    if((m = line.match(/^(\s*)([-*+•]|\d+[.)])\s+(.*)$/))){
+      flushPara(); flushQuote();
+      const indent = m[1].replace(/\t/g, '  ').length;
+      const type = /\d/.test(m[2]) ? 'ol' : 'ul';
+      const text = m[3].replace(/^\[( |x|X)\]\s+/, (_, c) => (c.trim() ? '☑ ' : '☐ '));
+      if(indent >= 2 && list && list.items.length){ list.items[list.items.length-1].sub.push(text); }
+      else{
+        if(!list || list.type !== type){ flushList(); list = { type:type, items:[] }; }
+        list.items.push({ text:text, sub:[] });
+      }
+      continue;
+    }
+    if(list && /^\s{2,}\S/.test(raw)){ list.items[list.items.length-1].text += ' ' + line.trim(); continue; }
+    flushList(); flushQuote(); para.push(line.trim());
+  }
+  flushAll();
+  return out;
+}
+
+/* ── key results ─────────────────────────────────────────────── */
+function parseKpis(s){
+  return String(s || '').split('\n').map(l => l.trim()).filter(Boolean).map(l => {
+    const p = l.split('|').map(x => x.trim());
+    return p.length === 1 ? { label:'', value:p[0], note:'' }
+                          : { label:p[0], value:p[1] || '', note:p.slice(2).join(' | ') };
+  });
+}
+function kpisHTML(s, cls){
+  const k = parseKpis(s);
+  if(!k.length) return '';
+  return '<div class="kpis' + (cls ? ' ' + cls : '') + '">' + k.map(x =>
+    '<div class="kpi">' +
+      (x.label ? '<div class="kpi__l">' + esc(x.label) + '</div>' : '') +
+      '<div class="kpi__v">' + esc(x.value) + '</div>' +
+      (x.note ? '<div class="kpi__n">' + esc(x.note) + '</div>' : '') +
+    '</div>').join('') + '</div>';
+}
+
+/* ── Airtable: Monthly Updates table ─────────────────────────── */
+function fromURec(rec){
+  const f = rec.fields || {};
+  const att = k => (Array.isArray(f[k]) ? f[k] : []).map(a => {
+    const t = a.thumbnails || {};
+    return { id:a.id, url:a.url, name:a.filename || '', type:a.type || '',
+             big:(t.large || t.full || {}).url || a.url, small:(t.small || t.large || {}).url || a.url };
+  });
+  const u = { id:rec.id, images:{} };
+  Object.keys(UF).forEach(k => { u[k] = asText(f[UF[k]]); });
+  u.month = normMonth(u.month);
+  u.status = u.status || 'Draft';
+  u.published = u.published.slice(0, 10);
+  USECTIONS.forEach(s => { if(s.img) u.images[s.key] = att(s.img); });
+  return u;
+}
+function toUFields(u){
+  const o = {};
+  Object.keys(UF).forEach(k => { o[UF[k]] = u[k] == null ? '' : u[k]; });
+  o[UF.published] = u.published || null;
+  return o;
+}
+async function utList(){
+  let out = [], offset = null;
+  do{
+    const r = await fetch(UT_URL() + '?pageSize=100' + (offset ? '&offset=' + offset : ''),
+                          { headers:{ 'Authorization':'Bearer ' + CONFIG.AT_TOKEN } });
+    if(!r.ok) throw new Error('Airtable ' + r.status + ': ' + (await r.text()).slice(0, 180));
+    const d = await r.json();
+    out = out.concat((d.records || []).map(fromURec));
+    offset = d.offset || null;
+  }while(offset);
+  return out;
+}
+async function utGet(id){
+  const r = await fetch(UT_URL() + '/' + id, { headers:{ 'Authorization':'Bearer ' + CONFIG.AT_TOKEN } });
+  if(!r.ok) throw new Error('Airtable ' + r.status + ': ' + (await r.text()).slice(0, 180));
+  return fromURec(await r.json());
+}
+async function utWrite(id, fields){
+  const r = await fetch(UT_URL() + (id ? '/' + id : ''), {
+    method: id ? 'PATCH' : 'POST',
+    headers:{ 'Authorization':'Bearer ' + CONFIG.AT_TOKEN, 'Content-Type':'application/json' },
+    body: JSON.stringify({ fields:fields, typecast:true })
+  });
+  if(!r.ok) throw new Error('Airtable ' + r.status + ': ' + (await r.text()).slice(0, 180));
+  return fromURec(await r.json());
+}
+async function utDelete(id){
+  const r = await fetch(UT_URL() + '/' + id, { method:'DELETE', headers:{ 'Authorization':'Bearer ' + CONFIG.AT_TOKEN } });
+  if(!r.ok) throw new Error('Airtable ' + r.status + ': ' + (await r.text()).slice(0, 180));
+}
+/* Airtable's upload endpoint: base64 in, attachment appended to the field. Max 5MB. */
+async function utUpload(recId, fieldName, file){
+  const b64 = await new Promise((res, rej) => {
+    const fr = new FileReader();
+    fr.onload = () => res(String(fr.result).split(',')[1]);
+    fr.onerror = () => rej(new Error("Couldn't read " + file.name));
+    fr.readAsDataURL(file);
+  });
+  const r = await fetch('https://content.airtable.com/v0/' + CONFIG.AT_BASE + '/' + recId + '/' +
+                        encodeURIComponent(fieldName) + '/uploadAttachment', {
+    method:'POST',
+    headers:{ 'Authorization':'Bearer ' + CONFIG.AT_TOKEN, 'Content-Type':'application/json' },
+    body: JSON.stringify({ contentType:file.type || 'image/png', filename:file.name, file:b64 })
+  });
+  if(!r.ok) throw new Error('Upload ' + r.status + ': ' + (await r.text()).slice(0, 160));
+}
+
+async function loadUpdates(){
+  $('u-notice').classList.remove('show');
+  if(!CONFIG.AT_BASE){ UPDATES = SEED_UPDATES.slice(); U_LIVE = false; return; }
+  if(!CONFIG.AT_UPDATES){
+    UPDATES = []; U_LIVE = false;
+    $('u-notice-body').textContent = 'CONFIG.AT_UPDATES is empty. Add the Monthly Updates table ID at the top of this file.';
+    $('u-notice').classList.add('show');
+    return;
+  }
+  try{ UPDATES = await utList(); U_LIVE = true; }
+  catch(err){
+    console.warn(err);
+    UPDATES = []; U_LIVE = false;
+    $('u-notice-body').textContent = err.message;
+    $('u-notice').classList.add('show');
+  }
+}
+
+/* ── which updates can this viewer see ───────────────────────── */
+function visibleUpdates(){
+  return UPDATES.filter(u => /^\d{4}-\d{2}$/.test(u.month) && (EDITING || u.status === 'Published'))
+                .sort((a, b) => b.month.localeCompare(a.month));
+}
+function currentUpdate(){
+  const vis = visibleUpdates();
+  if(!U_MONTH) return { u:vis[0] || null, why:vis.length ? '' : 'none' };
+  const u = vis.find(x => x.month === U_MONTH);
+  if(u) return { u:u, why:'' };
+  const hidden = UPDATES.find(x => x.month === U_MONTH);
+  return { u:null, why: hidden ? 'unpublished' : 'missing' };
+}
+
+/* ── routing ─────────────────────────────────────────────────── */
+function route(){
+  const h = decodeURIComponent(location.hash.replace(/^#\/?/, ''));
+  if(/^update/i.test(h)){
+    PAGE = 'update';
+    const m = h.split('/')[1];
+    U_MONTH = m ? normMonth(m) : null;
+  }else{
+    PAGE = 'calendar';
+  }
+  applyPage();
+}
+function goUpdate(m){ location.hash = m ? '#update/' + m : '#update'; }
+function applyPage(){
+  $('page-calendar').style.display = PAGE === 'calendar' ? '' : 'none';
+  $('page-update').style.display   = PAGE === 'update'   ? '' : 'none';
+  document.querySelectorAll('.appnav__a').forEach(a =>
+    a.classList.toggle('is-on', a.getAttribute('data-page') === PAGE));
+  if(PAGE === 'update'){
+    if(UED) return;                          /* don't yank someone out of the editor */
+    renderUpdatePage();
+  }else{
+    document.title = 'Content Calendar · PartsCheck & FlexiQuote';
+    render();
+  }
+}
+
+/* ── reading view ────────────────────────────────────────────── */
+function imagesHTML(list){
+  if(!list || !list.length) return '';
+  return '<div class="ugal">' + list.map(a => {
+    const cap = a.name.replace(/\.[a-z0-9]+$/i, '').replace(/[-_]+/g, ' ').trim();
+    return '<figure class="ugal__fig"><a href="' + esc(a.url) + '" target="_blank" rel="noopener noreferrer">' +
+           '<img src="' + esc(a.big) + '" alt="' + esc(cap) + '" loading="lazy" /></a>' +
+           (cap ? '<figcaption class="ugal__cap">' + esc(cap) + '</figcaption>' : '') + '</figure>';
+  }).join('') + '</div>';
+}
+function comingFromCalendar(u){
+  const next = shiftMonth(u.month, 1);
+  return DATA.filter(e => (e.date || '').slice(0, 7) === next).sort(sortByDate);
+}
+function comingHTML(u){
+  const rows = comingFromCalendar(u);
+  if(!rows.length) return '';
+  return '<div class="ucal"><div class="ucal__lab">On the content calendar</div><div class="ucal__list">' +
+    rows.map(e =>
+      '<button class="up-item" data-entry="' + esc(e.id) + '" type="button">' +
+        '<span class="up-item__d">' + esc(prettyDate(e.date)) + '</span>' +
+        '<span class="chip chip--ch" style="border-left-color:' + chColor(e.channel) + '">' + esc(e.channel || 'Other') + '</span>' +
+        tickSVG(e.brand, 13) +
+        '<span class="up-item__t">' + esc(e.title) + '</span>' +
+        '<span class="st st--' + (ST_CLASS[e.status] || 'planned') + '">' + esc(e.status || 'Planned') + '</span>' +
+      '</button>').join('') +
+    '</div></div>';
+}
+function articleHTML(u){
+  const draft = u.status !== 'Published';
+  const by = [ u.author || DEFAULT_AUTHOR,
+               draft ? 'Draft, not published yet' : (u.published ? 'Published ' + prettyDate(u.published).replace(/^\w+ /, '') : '') ]
+             .filter(Boolean).join(' · ');
+  let h = '<section class="card"><div class="uhead">' +
+    (draft ? '<div class="udraft"><b>Draft.</b> Only visible in edit mode. Publish it from the editor when it\'s ready.</div>' : '') +
+    '<div class="uhead__kicker">' + esc(monthName(u.month)) + ' marketing update</div>' +
+    '<h1 class="uhead__h1">' + esc(u.headline || (monthName(u.month) + ' in marketing')) + '</h1>' +
+    '<div class="uhead__by">' + esc(by) + '</div>' +
+    (u.summary ? '<div class="uhead__sum">' + md(u.summary) + '</div>' : '') +
+    kpisHTML(u.kpis) +
+  '</div></section>';
+
+  USECTIONS.forEach(s => {
+    const body = md(u[s.key]);
+    const imgs = s.img ? imagesHTML(u.images[s.key]) : '';
+    const cal  = s.key === 'coming' ? comingHTML(u) : '';
+    if(!body && !imgs && !cal) return;
+    h += '<section class="card"><div class="card__head"><div class="card__label">' + esc(s.title(u.month)) + '</div></div>' +
+         '<div class="usec__body">' + (body ? '<div class="prose">' + body + '</div>' : '') + imgs + cal + '</div></section>';
+  });
+  return h;
+}
+function railHTML(cur){
+  const vis = visibleUpdates();
+  if(!vis.length) return '<div class="urail__empty">' + (EDITING ? 'No updates yet.' : 'Nothing published yet.') + '</div>';
+  return vis.map(u =>
+    '<a class="urail__item' + (cur && cur.id === u.id ? ' is-on' : '') + '" href="#update/' + esc(u.month) + '">' +
+      '<div class="urail__m">' + esc(monthName(u.month)) +
+        (u.status !== 'Published' ? ' <span class="st st--draft">Draft</span>' : '') + '</div>' +
+      (u.headline ? '<div class="urail__h">' + esc(u.headline) + '</div>' : '') +
+    '</a>').join('');
+}
+function renderUpdatePage(){
+  const r = currentUpdate(), u = r.u;
+  const vis = visibleUpdates();
+  $('u-view').style.display = '';
+  $('u-editor').style.display = 'none';
+  $('u-edit').style.display = EDITING && u ? '' : 'none';
+  $('u-new').style.display  = EDITING ? '' : 'none';
+  $('u-copy').style.display = u && u.status === 'Published' ? '' : 'none';
+
+  const i = u ? vis.indexOf(u) : -1;                 /* vis is newest first */
+  $('u-prev').disabled = !(i > -1 && i < vis.length - 1);
+  $('u-next').disabled = !(i > 0);
+  $('u-label').textContent = u ? monthName(u.month) : (U_MONTH ? monthName(U_MONTH) : 'Monthly update');
+
+  if(u){
+    $('u-article').innerHTML = articleHTML(u);
+    document.title = monthName(u.month) + ' marketing update · PartsCheck';
+  }else{
+    const msg = {
+      none:        ['No monthly updates yet.', EDITING ? 'Start the first one with New Update.' : 'Check back soon.'],
+      unpublished: ['This update isn\'t published yet.', 'Check back soon, or open the latest one from the list.'],
+      missing:     ['There\'s no update for ' + monthName(U_MONTH) + '.', 'Pick one from the list.']
+    }[r.why] || ['Nothing to show.', ''];
+    $('u-article').innerHTML = '<div class="uempty"><b>' + esc(msg[0]) + '</b>' + esc(msg[1]) + '</div>';
+    document.title = 'Monthly update · PartsCheck';
+  }
+  $('u-rail').innerHTML = railHTML(u);
+}
+
+/* ── editor ──────────────────────────────────────────────────── */
+function buildEditorSections(){
+  $('ue-sections').innerHTML = USECTIONS.map(s =>
+    '<div class="frow ued__sec">' +
+      '<label class="frow__lab" for="ue-' + s.key + '" id="ue-lab-' + s.key + '">' + esc(s.label) + '</label>' +
+      '<textarea id="ue-' + s.key + '" data-ufield="' + s.key + '"></textarea>' +
+      (s.key === 'coming' ? '<div class="fhelp">Anything not on the calendar. Next month\'s calendar entries are listed under this automatically.</div>' : '') +
+      (s.img ? '<div class="ued-imgs" id="ue-imgs-' + s.key + '"></div>' : '') +
+    '</div>').join('');
+}
+function edLabels(){
+  const m = /^\d{4}-\d{2}$/.test($('ue-month').value) ? $('ue-month').value : null;
+  USECTIONS.forEach(s => { $('ue-lab-' + s.key).textContent = m ? s.title(m) : s.label; });
+}
+function edImages(){
+  USECTIONS.forEach(s => {
+    if(!s.img) return;
+    const list = (UED && UED.images[s.key]) || [];
+    $('ue-imgs-' + s.key).innerHTML =
+      list.map(a => '<div class="ued-img"><img src="' + esc(a.small) + '" alt="" />' +
+        '<button class="ued-img__x" type="button" title="Remove image" data-uimgdel="' + s.key + '|' + esc(a.id) + '">&#10005;</button></div>').join('') +
+      '<button class="ued-add" type="button" data-uimgadd="' + s.key + '">+ Add Images</button>';
+  });
+}
+function edButtons(){
+  const pub = UED.status === 'Published';
+  $('ue-title').textContent = UED.id ? 'Edit update' : 'New update';
+  $('ue-badge').className = 'st ' + (pub ? 'st--pub' : 'st--draft');
+  $('ue-badge').textContent = pub ? 'Published' : 'Draft';
+  $('ue-secondary').textContent = pub ? 'Unpublish' : 'Save Draft';
+  $('ue-primary').textContent   = pub ? 'Save Changes' : 'Publish';
+  $('ue-delete').style.display  = UED.id ? '' : 'none';
+  $('ue-state').textContent     = UED_DIRTY ? 'Unsaved changes' : (UED.id ? 'All changes saved' : '');
+}
+function openUEditor(u){
+  if(!EDITING) return;
+  UED = u ? JSON.parse(JSON.stringify(u)) : {
+    id:null, status:'Draft', author:DEFAULT_AUTHOR, images:{},
+    month:(() => { const prev = monthKey(new Date(new Date().getFullYear(), new Date().getMonth()-1, 1));
+                   return UPDATES.some(x => x.month === prev) ? monthKey(new Date()) : prev; })()
+  };
+  USECTIONS.forEach(s => { if(s.img && !UED.images[s.key]) UED.images[s.key] = []; });
+  $('ue-month').value    = UED.month || '';
+  $('ue-headline').value = UED.headline || '';
+  $('ue-author').value   = UED.author || '';
+  $('ue-summary').value  = UED.summary || '';
+  $('ue-kpis').value     = UED.kpis || '';
+  USECTIONS.forEach(s => { $('ue-' + s.key).value = UED[s.key] || ''; });
+  $('ue-month-err').classList.remove('show');
+  UED_DIRTY = false;
+  edLabels(); edImages(); edButtons();
+  $('ue-kpi-preview').innerHTML = kpisHTML($('ue-kpis').value, 'kpis--mini');
+  $('u-view').style.display = 'none';
+  $('u-editor').style.display = '';
+  document.querySelectorAll('#u-editor textarea').forEach(autoGrow);
+  $('u-edit').style.display = 'none';
+  $('u-new').style.display = 'none';
+  $('u-copy').style.display = 'none';
+  window.scrollTo(0, 0);
+  setTimeout(() => (UED.id ? $('ue-summary') : $('ue-headline')).focus(), 60);
+}
+function autoGrow(t){ t.style.height = 'auto'; t.style.height = (t.scrollHeight + 2) + 'px'; }
+function closeUEditor(force){
+  if(!force && UED_DIRTY){
+    askU('Discard changes?', 'You have unsaved changes to this update. Close without saving?', 'Discard', () => closeUEditor(true));
+    return;
+  }
+  const m = UED && UED.month;
+  UED = null; UED_DIRTY = false;
+  if(m && UPDATES.some(x => x.month === m) && U_MONTH !== m) goUpdate(m);
+  else renderUpdatePage();
+}
+function collectEditor(){
+  const u = Object.assign({}, UED);
+  u.month    = normMonth($('ue-month').value);
+  u.headline = $('ue-headline').value.trim();
+  u.author   = $('ue-author').value.trim();
+  u.summary  = $('ue-summary').value.trim();
+  u.kpis     = $('ue-kpis').value.trim();
+  USECTIONS.forEach(s => { u[s.key] = $('ue-' + s.key).value.replace(/\s+$/, ''); });
+  return u;
+}
+async function saveUpdate(status, opts){
+  opts = opts || {};
+  const u = collectEditor();
+  u.status = status;
+  if(status === 'Published' && !u.published) u.published = TODAY;
+  if(status !== 'Published') u.published = '';
+
+  const err = $('ue-month-err');
+  if(!/^\d{4}-\d{2}$/.test(u.month)){ err.textContent = 'Pick a month.'; err.classList.add('show'); return false; }
+  const clash = UPDATES.find(x => x.month === u.month && x.id !== u.id);
+  if(clash){ err.textContent = 'There\'s already an update for ' + monthName(u.month) + '. Open that one instead.'; err.classList.add('show'); return false; }
+  err.classList.remove('show');
+
+  const btns = [$('ue-primary'), $('ue-secondary')];
+  btns.forEach(b => b.disabled = true);
+  $('ue-state').textContent = 'Saving…';
+  try{
+    let saved;
+    if(U_LIVE) saved = await utWrite(u.id, toUFields(u));
+    else saved = Object.assign({}, u, { id:u.id || ('local-u-' + Date.now()) });
+    saved.images = saved.images && Object.keys(saved.images).length ? saved.images : u.images;
+    const i = UPDATES.findIndex(x => x.id === saved.id);
+    if(i > -1) UPDATES[i] = saved; else UPDATES.push(saved);
+    UED = JSON.parse(JSON.stringify(saved));
+    UED_DIRTY = false;
+    edButtons(); edImages();
+    if(!opts.quiet){
+      const m = monthName(saved.month), demo = U_LIVE ? '' : ' (demo only, not saved)';
+      toast(status === 'Published'
+        ? (opts.wasPublished ? 'Changes saved to ' + m + '.' : m + ' is published. Use Copy Link to share it.') + demo
+        : (opts.unpublish ? m + ' is back to draft.' : 'Draft saved.') + demo);
+    }
+    if(opts.close){ closeUEditor(true); }
+    return true;
+  }catch(e){
+    console.error(e);
+    $('ue-state').textContent = 'Not saved';
+    toast("Couldn't save the update: " + e.message);
+    return false;
+  }finally{
+    btns.forEach(b => b.disabled = false);
+  }
+}
+async function addImages(sectionKey, files){
+  const s = USECTIONS.find(x => x.key === sectionKey);
+  if(!s || !files.length) return;
+  if(!U_LIVE){ toast('Images need Airtable connected. They can\'t be stored in demo mode.'); return; }
+  if(!UED.id || UED_DIRTY){
+    const ok = await saveUpdate(UED.status || 'Draft', { quiet:true });   /* uploads need a saved record */
+    if(!ok) return;
+  }
+  const btn = document.querySelector('[data-uimgadd="' + sectionKey + '"]');
+  if(btn){ btn.disabled = true; btn.textContent = 'Uploading…'; }
+  let n = 0;
+  for(const f of files){
+    if(!/^image\//.test(f.type)){ toast(f.name + ' isn\'t an image.'); continue; }
+    if(f.size > 5 * 1024 * 1024){ toast(f.name + ' is over 5MB. Shrink it or upload it in Airtable.'); continue; }
+    try{ await utUpload(UED.id, s.img, f); n++; }
+    catch(e){ console.error(e); toast("Couldn't upload " + f.name + ': ' + e.message); }
+  }
+  try{
+    const fresh = await utGet(UED.id);
+    const i = UPDATES.findIndex(x => x.id === fresh.id); if(i > -1) UPDATES[i] = fresh;
+    UED.images = fresh.images;
+  }catch(e){ console.error(e); }
+  edImages();
+  if(n) toast(n + (n === 1 ? ' image' : ' images') + ' added.');
+}
+async function removeImage(sectionKey, attId){
+  const s = USECTIONS.find(x => x.key === sectionKey);
+  const keep = (UED.images[sectionKey] || []).filter(a => a.id !== attId);
+  try{
+    if(U_LIVE && UED.id){
+      const f = {}; f[s.img] = keep.map(a => ({ id:a.id }));
+      const r = await fetch(UT_URL() + '/' + UED.id, {
+        method:'PATCH', headers:{ 'Authorization':'Bearer ' + CONFIG.AT_TOKEN, 'Content-Type':'application/json' },
+        body: JSON.stringify({ fields:f })
+      });
+      if(!r.ok) throw new Error('Airtable ' + r.status);
+    }
+    UED.images[sectionKey] = keep;
+    const i = UPDATES.findIndex(x => x.id === UED.id); if(i > -1) UPDATES[i].images[sectionKey] = keep;
+    edImages(); toast('Image removed.');
+  }catch(e){ console.error(e); toast("Couldn't remove the image: " + e.message); }
+}
+async function deleteUpdate(){
+  const u = UED; if(!u || !u.id) return;
+  try{
+    if(U_LIVE) await utDelete(u.id);
+    UPDATES = UPDATES.filter(x => x.id !== u.id);
+    hide('ov-uconfirm');
+    UED = null; UED_DIRTY = false;
+    toast('Deleted the ' + monthName(u.month) + ' update.');
+    goUpdate(null); renderUpdatePage();
+  }catch(e){ console.error(e); toast("Couldn't delete: " + e.message); }
+}
+function askU(title, body, goLabel, fn){
+  $('uc-title').textContent = title;
+  $('uc-body').textContent  = body;
+  $('uc-go').textContent    = goLabel;
+  UC_ACTION = fn;
+  show('ov-uconfirm');
+}
+async function copyLink(){
+  const r = currentUpdate();
+  const url = location.href.split('#')[0] + '#update/' + (r.u ? r.u.month : '');
+  try{ await navigator.clipboard.writeText(url); }
+  catch(e){
+    const t = document.createElement('textarea'); t.value = url; document.body.appendChild(t);
+    t.select(); try{ document.execCommand('copy'); }catch(_){}; t.remove();
+  }
+  toast('Link copied: ' + url);
+}
+
+/* ── wiring ──────────────────────────────────────────────────── */
+function wireUpdates(){
+  buildEditorSections();
+  window.addEventListener('hashchange', route);
+
+  $('u-prev').addEventListener('click', () => { const v = visibleUpdates(), u = currentUpdate().u, i = v.indexOf(u); if(i > -1 && v[i+1]) goUpdate(v[i+1].month); });
+  $('u-next').addEventListener('click', () => { const v = visibleUpdates(), u = currentUpdate().u, i = v.indexOf(u); if(i > 0) goUpdate(v[i-1].month); });
+  $('u-copy').addEventListener('click', copyLink);
+  $('u-edit').addEventListener('click', () => { const u = currentUpdate().u; if(u) openUEditor(u); });
+  $('u-new').addEventListener('click', () => openUEditor(null));
+
+  $('u-editor').addEventListener('input', ev => {
+    if(ev.target.id === 'ue-file') return;
+    if(ev.target.tagName === 'TEXTAREA') autoGrow(ev.target);
+    UED_DIRTY = true; edButtons();
+    if(ev.target.id === 'ue-kpis') $('ue-kpi-preview').innerHTML = kpisHTML(ev.target.value, 'kpis--mini');
+    if(ev.target.id === 'ue-month') edLabels();
+  });
+  $('ue-close').addEventListener('click', () => closeUEditor(false));
+  $('ue-primary').addEventListener('click', () => saveUpdate('Published', { close:true, wasPublished: UED.status === 'Published' }));
+  $('ue-secondary').addEventListener('click', () => {
+    if(UED.status === 'Published') saveUpdate('Draft', { unpublish:true });
+    else saveUpdate('Draft');
+  });
+  $('ue-delete').addEventListener('click', () => {
+    askU('Delete this update?', 'This removes the ' + monthName(UED.month) + ' update from Airtable, images included. It can\'t be undone from this page.', 'Delete', deleteUpdate);
+  });
+  $('uc-go').addEventListener('click', () => { const fn = UC_ACTION; UC_ACTION = null; hide('ov-uconfirm'); if(fn) fn(); });
+
+  let imgTarget = null;
+  $('u-editor').addEventListener('click', ev => {
+    const add = ev.target.closest('[data-uimgadd]');
+    if(add){ imgTarget = add.getAttribute('data-uimgadd'); $('ue-file').value = ''; $('ue-file').click(); return; }
+    const del = ev.target.closest('[data-uimgdel]');
+    if(del){ const p = del.getAttribute('data-uimgdel').split('|'); removeImage(p[0], p[1]); }
+  });
+  $('ue-file').addEventListener('change', ev => { const files = Array.from(ev.target.files || []); if(imgTarget) addImages(imgTarget, files); });
+
+  window.addEventListener('beforeunload', ev => { if(UED && UED_DIRTY){ ev.preventDefault(); ev.returnValue = ''; } });
+}
+
 /* ═══════════════════════════════════════════════════════════════
    Boot
    ═══════════════════════════════════════════════════════════════ */
 (async function boot(){
   initControls();
-  await loadData();
+  wireUpdates();
+  await Promise.all([loadData(), loadUpdates()]);
   refreshTagList();
   if(sessionStorage.getItem('pc_cal_edit') === '1') setEdit(true);
-  render();
+  route();
 })();
 </script>
 </body>
